@@ -75,7 +75,7 @@ login = HPEUXIApiLogin(api_token="your API Token"))
 
 2. Using API Client Credentials 
 ```python
-login = HPEUXIApiLogin(client_id="your client id",client_secret="your client secret))
+login = HPEUXIApiLogin(client_id="your client id",client_secret="your client secret"))
 ```
 
 > [!WARNING]  
@@ -92,7 +92,7 @@ url = "https://api.capenetworks.com") # Override the API Service URL. Default UR
 oauth_token_url = "https://sso.common.cloud.hpe.com/as/token.oauth2", #Override the GreenLake OAuth Token Service URL. The default URL is shown 
 ```
 
-Find an API you want to use, by prefixing  `OpenApi.`  in your IDE and Intellisense will show the available APIs available.  
+Find an API you want to use, by prefixing  `OpenApi.`  in your IDE and Intellisense will show the available APIs.  
 
 The example below prints the contents of all the groups within the UXI environment. You must pass in the login variable to execute to function correctly.
 
