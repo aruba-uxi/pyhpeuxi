@@ -173,8 +173,8 @@ for group in groups['items']:
         print("Group Name Matched",moveAgentToGroup, " Group ID:",group['id'])
         groupID = group['id']
 
-# Move agent to new group based on obtained groupID and agentID
-if agentID:
+# Move agent to new group if obtained groupID and agentID 
+if agentID and groupID:
     body={
     'groupId' : groupID, # The unique identifier of the group
     'agentId' : agentID, # The unique identifier of the agent
@@ -208,8 +208,7 @@ for agent in agents['items']:
         print("Found Agent",agent['name'])
         agentID = agent['id']
 
-if agentID:
+if agentID :
     body={'name' : newAgentName, 'notes' : 'Lab Agent - Windows 10 Work Machine'}
     print("Updating Agent Name and Notes:",OpenApi.update_agent(login_cred,id=agentID,body=body))
 ```
-## TBC
