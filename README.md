@@ -1,13 +1,14 @@
 # pyhpeuxi
-## HPE Aruba Networking User Experience Insight (UXI) SDK 
-This package has been developed in Python v3.9 to utilise the full functionality of the HPE Aruba Networking User Experience Insight API environment. Each available REST API command is available for use in this module. All responses from HPE Aruba Networking User Experience Insight API are in JSON format (converted into a Python dictionary object).
 
-This package has been uploaded to https://pypi.org/ and is also available to install via https://github.com/aruba/pyhpeuxi. 
-These instructions will also available at https://developer.arubanetworks.com/ in due course.
-Installation instructions and usage instructions are also provided below. 
+## HPE Aruba Networking User Experience Insight (UXI) SDK
 
-## Available API Categories  
-The following describes the available top level API functionality of the HPE Aruba Networking User Experience Insight SDK available within this Python Package. 
+This package has been developed in Python v3.9 to utilize the full functionality of the HPE Aruba Networking User Experience Insight API environment. Each available REST API command is available for use in this module. All responses from HPE Aruba Networking User Experience Insight API are in JSON format (converted into a Python dictionary object).
+
+This package has been uploaded to [PyPI](https://pypi.org/) and is also available to install via [GitHub](https://github.com/aruba/pyhpeuxi). These instructions will also be available at [Aruba Developer Network](https://developer.arubanetworks.com/) in due course. Installation instructions and usage instructions are also provided below.
+
+## Available API Categories
+
+The following describes the available top-level API functionality of the HPE Aruba Networking User Experience Insight SDK available within this Python Package:
 - API Service - Agents
 - API Service - Agent Group Assignments
 - API Service - Groups
@@ -21,21 +22,22 @@ The following describes the available top level API functionality of the HPE Aru
 
 _This package comes without any warranties and should be used at your own risk._
 
-## HPE Aruba Networking User Experience Insight (UXI) SDK API Pre-requisites   
+## HPE Aruba Networking User Experience Insight (UXI) SDK API Prerequisites
+
 As a prerequisite to using the onboarding API, the following conditions must be met:
-1. Your dashboard must be on the HPE Greenlake Cloud Platform (GLP). If you are not yet migrated to the platform, you can follow these steps to migrate via support using the following link https://intercom.help/aruba-uxi/en/articles/10136432-migration-to-the-greenlake-cloud-platform. 
-2. Your dashboard must be using the new group-based configuration. We are beginning to migrate our customers to the new group-based configuration automatically beginning in February, but it may take a few months to complete for all dashboards. You can expedite the migration by following the steps to prepare your dashboard for group-based configuration via this link - https://intercom.help/aruba-uxi/en/articles/10355997-prepare-your-dashboard-for-group-based-configuration. 
+1. Your dashboard must be on the HPE Greenlake Cloud Platform (GLP). If you are not yet migrated to the platform, you can follow these [steps to migrate via support](https://intercom.help/aruba-uxi/en/articles/10136432-migration-to-the-greenlake-cloud-platform).
+2. Your dashboard must be using the new group-based configuration. We are beginning to migrate our customers to the new group-based configuration automatically beginning in February, but it may take a few months to complete for all dashboards. You can expedite the migration by following the [steps to prepare your dashboard for group-based configuration](https://intercom.help/aruba-uxi/en/articles/10355997-prepare-your-dashboard-for-group-based-configuration).
 
-## HPE Aruba Networking User Experience Insight (UXI) SDK API Readiness 
+## HPE Aruba Networking User Experience Insight (UXI) SDK API Readiness
+
 These steps list what is required on the HPE Aruba Networking User Experience Insight Management Console:
-1. To get started with the UXI Onboarding API, first go to your Greenlake Cloud Workspace and select Manage Workspace.
-2. Next, select the option for Personal API clients and select Create Personal API Client.
-3. In the pop-up menu, provide a personal API client name and select the service for User Experience Insight (US West). Then select Create Personal API client. 
-4. You will then be given a Client ID and Client secret. Store these values locally in a safe location. These can be used within your script or you can use the API token provided in the next step. Note the access token described below is only valid for a short period of time. 
-5. When you look at the page for personal API clients again, you will see the one you created. Expand the menu to generate an access token using the client secret. This access token will be used for API requests. 
+1. To get started with the UXI Onboarding API, first go to your Greenlake Cloud Workspace and select **Manage Workspace**.
+2. Next, select the option for **Personal API clients** and select **Create Personal API Client**.
+3. In the pop-up menu, provide a personal API client name and select the service for User Experience Insight (US West). Then select **Create Personal API client**.
+4. You will then be given a Client ID and Client secret. Store these values locally in a safe location. These can be used within your script or you can use the API token provided in the next step. Note the access token described below is only valid for a short period of time.
+5. When you look at the page for personal API clients again, you will see the one you created. Expand the menu to generate an access token using the client secret. This access token will be used for API requests.
 
-If you need further information, refer to the HPE Aruba Networking User Experience Insight configuration documentation for the API account -
-https://help.capenetworks.com/en/articles/10488192-user-experience-insight-onboarding-api
+If you need further information, refer to the HPE Aruba Networking User Experience Insight configuration documentation for the API account - [User Experience Insight Onboarding API](https://help.capenetworks.com/en/articles/10488192-user-experience-insight-onboarding-api).
 
 # Python Requirements  
 Ensure Python v3 or greater is installed on your operating system
@@ -84,20 +86,20 @@ login = HPEUXIApiLogin(client_id="your client id",client_secret="your client sec
 > [!NOTE]  
 > When using Method 2 to use the API of the UXI environment, you can retrieve the API token by calling the login variable and referencing the vaiable api_token ```(login.api_token)```. The API Tokens expire after 120 minutes. 
 
-## Optional Parameters
-The following detail the additional available parameters within the HPEUXIApiLogin class. 
-```python
-verify_ssl = False, #Disable SSL if required. By default, verify SSL is enabled. 	
-url = "https://api.capenetworks.com") # Override the API Service URL. Default URL is shown 
-oauth_token_url = "https://sso.common.cloud.hpe.com/as/token.oauth2", #Override the GreenLake OAuth Token Service URL. The default URL is shown 
-```
-
 Find an API you want to use, by prefixing  `OpenApi.`  in your IDE and Intellisense will show the available APIs.  
 
 The example below prints the contents of all the groups within the UXI environment. You must pass in the login variable to execute to function correctly.
 
 ```python
 print(OpenApi.get_groups(login)) 
+```
+
+## Optional Parameters
+The following detail the additional available parameters within the HPEUXIApiLogin class. 
+```python
+verify_ssl = False, #Disable SSL if required. By default, verify SSL is enabled. 	
+url = "https://api.capenetworks.com") # Override the API Service URL. Default URL is shown 
+oauth_token_url = "https://sso.common.cloud.hpe.com/as/token.oauth2", #Override the GreenLake OAuth Token Service URL. The default URL is shown 
 ```
 
 # Help
