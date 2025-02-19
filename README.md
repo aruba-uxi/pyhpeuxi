@@ -111,9 +111,7 @@ oauth_token_url = "https://sso.common.cloud.hpe.com/as/token.oauth2", #Override 
 
 # Help
 
-Once you have written a specific API  `OpenApi.function_name(`, placing your cursor over the command will show you help for the function and what the required parameters are (example is Visual Studio Code). The first parameter is always login.  
-You may also read the help for the function by calling `help(OpenApi.function_name)`.  
-Each function contains a brief help summary. 
+After writing a specific API call such as `OpenApi.function_name(`, you can hover your cursor over the command to view help information and the required parameters (e.g., in Visual Studio Code). Note that the first parameter is always "login." Additionally, you can read the function's help documentation by calling help(OpenApi.function_name). Each function includes a concise help summary.
 
 # Python Package Upgrade Instructions
 
