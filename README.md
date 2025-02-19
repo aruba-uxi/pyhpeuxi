@@ -93,6 +93,13 @@ The example below prints the contents of all the groups within the UXI environme
 ```python
 print(OpenApi.get_groups(login)) 
 ```
+## Working Example
+Below is an example of the initial usage instructions, which includes a console print to display the result.
+```python
+from pyhpeuxi import *
+login = HPEUXIApiLogin(client_id="your client id",client_secret="your client secret")
+print(OpenApi.get_groups(login)) 
+```
 
 ## Optional Parameters
 The following detail the additional available parameters within the HPEUXIApiLogin class. 
