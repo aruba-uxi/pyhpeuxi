@@ -214,7 +214,7 @@ if agentID :
 ```
 ## Export Inventory to CSV
 
-In the following example, we get a complete inventory of all our resources and write the data to a collection of CSV files. This can be useful for inventory management, reporting and obtaining resource ID's for when we need to make additional calls to the onboarding API.
+In the following example, we get a complete inventory of all our resources and write the data to a collection of CSV files in a folder called csv. This can be useful for inventory management, reporting and obtaining resource ID's for when we need to make additional calls to the onboarding API.
 
 ``` Python
 import csv
