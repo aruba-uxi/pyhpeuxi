@@ -136,11 +136,11 @@ or
 
 # Further Usage Examples
 
-The examples below all exclude importing the module and creating the login variable. This is described directly below. Note, these are just a few examples but there are many API commands available within the UXI SDK.
+These are just a few examples but there are many API functions available within the UXI SDK. 
 
 ## Move an Agent to another Group
 
-This example requires the Client ID, Client Secret, the Agent Name and the Name of the Group to move the Agent To.
+This example requires the Client ID, Client Secret, the Agent Name and the Name of the Group to move the Agent To. 
 ``` Python
 # import pyhpeuxi Module
 from pyhpeuxi import *
