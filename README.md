@@ -20,7 +20,9 @@ The following describes the available top-level API functionality of the HPE Aru
 - API Service - Wired Networks
 - API Service - Wireless Networks
 
-_This package comes without any warranties and should be used at your own risk._
+> [!WARNING]  
+> This package comes without any warranties and should be used at your own risk.
+
 
 ## HPE Aruba Networking User Experience Insight (UXI) SDK API Prerequisites
 
