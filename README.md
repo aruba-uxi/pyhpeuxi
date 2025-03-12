@@ -103,14 +103,14 @@ Find an API you want to use, by prefixing  `OpenApi.`  in your IDE and Intellise
 The example below prints the contents of all the groups within the UXI environment. You must pass in the login variable to execute to function correctly.
 
 ```python
-print(OpenApi.get_groups(login)) 
+print(OpenApi.get_networks_wireless(login)) 
 ```
 ## Working Example
 Below is an example of the initial usage instructions, which includes a console print to display the result.
 ```python
 from pyhpeuxi import *
 login = HPEUXIApiLogin(client_id="your client id",client_secret="your client secret")
-print(OpenApi.get_groups(login)) 
+print(OpenApi.get_networks_wireless(login)) 
 ```
 
 ## Optional Parameters
