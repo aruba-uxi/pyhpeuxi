@@ -1,3 +1,6 @@
+# (C) Copyright 2019-2025 Hewlett Packard Enterprise Development LP.
+# Apache License 2.0
+
 import json
 import requests
 import urllib.parse, urllib3
@@ -15,6 +18,7 @@ class HPEUXIApiLogin:
         api_token="",
         client_id="",
         client_secret="",
+        api_client_credentials="",
         oauth_token_url="https://sso.common.cloud.hpe.com/as/token.oauth2",
         verify_ssl=True,
     ):
@@ -30,6 +34,9 @@ class HPEUXIApiLogin:
         client_id (string): oAuth API Client ID
         client_secret (string): oAuth API Client Secret
 
+        Mandatory Parameters Method 3:
+        api_client_credentials (object): dictionary object containing both 'client_id' and 'client_secret', used with Utils_UXI.get_personal_api_client_creds_from_file()
+
         Optional Parameters:
         url (string): Web Service for API Services  - https://api-dev.capenetworks.com
         verify_ssl (boolean): Validate web service cerificate - True/False
@@ -42,6 +49,7 @@ class HPEUXIApiLogin:
         self.oauth_token_url = oauth_token_url
         self.client_id = client_id
         self.client_secret = client_secret
+        self.api_client_credentials = api_client_credentials
 
     def _send_request(self, url, method, query=""):
         """Sends a request to the HPE Aruba Networking User Experience Insight API  URL
@@ -166,8 +174,13 @@ def _new_api_token(self):
     "client_secret": "string"
     }
     """
-    client_creds = HTTPBasicAuth(self.client_id, self.client_secret)
 
+    if self.api_client_credentials == "":
+        
+        client_creds = HTTPBasicAuth(self.client_id, self.client_secret)
+    else:
+        client_creds = HTTPBasicAuth(self.api_client_credentials['client_id'], self.api_client_credentials['client_secret'])
+    
     response = requests.post(
         url=self.oauth_token_url,
         data={"grant_type": "client_credentials"},
