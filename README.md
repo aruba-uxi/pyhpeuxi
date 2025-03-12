@@ -69,7 +69,7 @@ from pyhpeuxi import *
 ```
 
 Create a object to login into the API. The login object needs to be passed to use any function to use the API.  
-Two examples below show how to create the login object (either one can be used, but not both).
+Four examples below show how to create the login object (choose only one method).
 
 1. Using API Token
 
@@ -81,9 +81,19 @@ login = HPEUXIApiLogin(api_token="your API Token"))
 ```python
 login = HPEUXIApiLogin(client_id="your client id",client_secret="your client secret"))
 ```
+3. Using the API Client Credentials retrieved from a JSON structured file. The file must exist in the same working directory of the script and contain the following structure. ```{"client_id":"your_client_id","client_secret":"your_client_secret"}```
+```python
+apiCreds = Utils_UXI.get_personal_api_client_creds_from_file("your_cred_file.token")
+login = HPEUXIApiLogin(api_client_credentials=apiCreds)
+```
+4. Using API Token retrieved from a JSON structured file. The file must exist in the same working directory of the script and contain the following structure. ```{"access_token":"your_secret_token"}```
+```python
+apiToken = Utils_UXI.get_token_from_file("my_token_file.token")
+login = HPEUXIApiLogin(api_token=apiToken)
+```
 
 > [!WARNING]  
-> Never expose your credentials directly in your scripts. The above is just an example for completeness. 
+> Never expose your credentials directly in your scripts. The above is just an example for completeness and to get you going. When using the likes of github, use your ignores file to exlude the credential files. 
 
 > [!NOTE]  
 > When using Method 2 to use the API of the UXI environment, you can retrieve the API token by calling the login variable and referencing the vaiable api_token ```(login.api_token)```. The API Tokens expire after 120 minutes. 
@@ -114,6 +124,49 @@ oauth_token_url = "https://sso.common.cloud.hpe.com/as/token.oauth2", #Override 
 # Help
 
 After writing a specific API call such as `OpenApi.function_name(`, you can hover your cursor over the command to view help information and the required parameters (e.g., in Visual Studio Code). Note that the first parameter is always "login." Additionally, you can read the function's help documentation by calling help(OpenApi.function_name). Each function includes a concise help summary.
+
+## Full Function List
+The following list details all the available functions within this package. Please use the help function described earlier to understand how to use each function. 
+
+**Agent Functions (OpenApi Class)**
+* delete_agent
+* delete_group_agent
+* get_agents
+* get_group_agent
+* new_group_agent
+* update_agent
+
+**Group Functions (OpenApi Class)**
+* delete_group
+* get_groups
+* update_group
+* new_group
+
+**Network Group Functions (OpenApi Class)**
+* delete_group_network
+* get_group_network
+* new_group_network
+
+**Sensor Functions (OpenApi Class)**
+* get_group_sensor
+* get_sensors
+* update_sensor
+* new_group_sensor
+
+**Service Functions (OpenApi Class)**
+* delete_test_service
+* get_test_service
+* get_tests_service
+* new_test_service
+
+**Wireless / Wired Networks (OpenApi Class)**
+* get_networks_wired
+* get_networks_wireless
+
+**Utilities (Utils_UXI Class)**
+* get_personal_api_client_creds_from_file
+* get_token_from_file
+* export_to_csv
 
 # Python Package Upgrade Instructions
 
@@ -194,6 +247,7 @@ from pyhpeuxi import *
 client_id="Your Client ID"
 client_secret="Your Client Secret"
 
+login_cred = HPEUXIApiLogin(client_id=client_id,client_secret=client_secret)
 gg = OpenApi.get_groups(login_cred)
 agents = OpenApi.get_agents(login_cred)
 
@@ -226,7 +280,7 @@ from pyhpeuxi import *
 client_id="Your Client ID"
 client_secret="Your Client Secret"
 
-login_cred = HPEUXIApiLogin(verify_ssl=False,client_id=client_id,client_secret=client_secret)
+login_cred = HPEUXIApiLogin(client_id=client_id,client_secret=client_secret)
 
 agents = OpenApi.get_agents(login_cred)
 groups = OpenApi.get_groups(login_cred)
@@ -235,45 +289,11 @@ wiredNetworks = OpenApi.get_networks_wired(login_cred)
 wirelessNetworks = OpenApi.get_networks_wireless(login_cred)
 serviceTests = OpenApi.get_tests_service(login_cred)
 
-def export_to_csv(data, file_name, sub_folder="csv"):
-    """
-    Exports the data to a CSV file. Parameters are described below
-    
-    :param The data to be exported (expected to be a dictionary with an 'items' key).
-    :param file_name: The name of the CSV file to create.
-    :param sub_folder: The subfolder where the CSV file will be saved.
-    """
-    if 'items' not in data:
-        raise ValueError("The provided data does not contain an 'items' key")
 
-    items = data['items']
-
-    if not items:
-        print(f"The 'items' list is empty for {file_name}. No CSV file will be created.")
-        return
-
-    headers = items[0].keys()
-
-    if not os.path.exists(sub_folder):
-        os.makedirs(sub_folder)
-
-    file_name = f"{file_name}.csv"
-    file_path = os.path.join(sub_folder, file_name)
-
-    with open(file_path, 'w', newline='') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=headers)
-
-        writer.writeheader()
-
-        for item in items:
-            writer.writerow(item)
-
-        print(f"Data has been exported to {file_path}")
-
-export_to_csv(agents,'agents')
-export_to_csv(groups,'groups')
-export_to_csv(sensors,'sensors')
-export_to_csv(wiredNetworks,'wiredNetworks')
-export_to_csv(wirelessNetworks,'wirelessNetworks')
-export_to_csv(serviceTests,'serviceTests')
+Utils_UXI.export_to_csv(agents,'agents')
+Utils_UXI.export_to_csv(groups,'groups')
+Utils_UXI.export_to_csv(sensors,'sensors')
+Utils_UXI.export_to_csv(wiredNetworks,'wiredNetworks')
+Utils_UXI.export_to_csv(wirelessNetworks,'wirelessNetworks')
+Utils_UXI.export_to_csv(serviceTests,'serviceTests')
 ```
