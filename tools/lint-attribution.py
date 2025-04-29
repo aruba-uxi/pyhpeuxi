@@ -5,13 +5,13 @@ from typing import List
 
 current_year = datetime.now().year
 notice = f"""
-/*
-Copyright {current_year} Hewlett Packard Enterprise Development LP.
-*/
+#
+# Copyright {current_year} Hewlett Packard Enterprise Development LP.
+#
 """
 
 def check_files_for_word(directory: str, word: str) -> None:
-    go_files: List[str] = glob.glob(f'{directory}/**/*.go', recursive=True)
+    go_files: List[str] = glob.glob(f'{directory}/**/*.py', recursive=True)
     for file_path in go_files:
         with open(file_path, 'r') as file:
             content: str = file.read()
@@ -21,7 +21,7 @@ def check_files_for_word(directory: str, word: str) -> None:
     print("All files contain the word.")
 
 def check_and_add_copyright(directory: str, word: str) -> None:
-    go_files: List[str] = glob.glob(f'{directory}/**/*.go', recursive=True)
+    go_files: List[str] = glob.glob(f'{directory}/**/*.py', recursive=True)
     for file_path in go_files:
         with open(file_path, 'r+') as file:
             content: str = file.read()
