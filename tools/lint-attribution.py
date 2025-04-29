@@ -4,8 +4,7 @@ from datetime import datetime
 from typing import List
 
 current_year = datetime.now().year
-notice = f"""
-#
+notice = f"""#
 # Copyright {current_year} Hewlett Packard Enterprise Development LP.
 #
 """
