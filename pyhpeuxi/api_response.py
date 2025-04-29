@@ -1,3 +1,7 @@
+#
+# Copyright 2025 Hewlett Packard Enterprise Development LP.
+#
+
 """API response object."""
 
 from __future__ import annotations

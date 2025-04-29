@@ -1,3 +1,7 @@
+#
+# Copyright 2025 Hewlett Packard Enterprise Development LP.
+#
+
 # flake8: noqa
 
 # import apis into api package
