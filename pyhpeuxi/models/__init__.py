@@ -1,7 +1,6 @@
 # coding: utf-8
 
 # flake8: noqa
-
 """
     HPE Aruba Networking UXI Configuration
 
@@ -15,36 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.0.0"
-
-# import apis into sdk package
-from pyhpeuxi.api.agent_group_assignments_api import AgentGroupAssignmentsApi
-from pyhpeuxi.api.agents_api import AgentsApi
-from pyhpeuxi.api.api_api import ApiApi
-from pyhpeuxi.api.configuration_api import ConfigurationApi
-from pyhpeuxi.api.groups_api import GroupsApi
-from pyhpeuxi.api.network_group_assignments_api import NetworkGroupAssignmentsApi
-from pyhpeuxi.api.sensor_group_assignments_api import SensorGroupAssignmentsApi
-from pyhpeuxi.api.sensors_api import SensorsApi
-from pyhpeuxi.api.service_test_group_assignments_api import ServiceTestGroupAssignmentsApi
-from pyhpeuxi.api.service_tests_api import ServiceTestsApi
-from pyhpeuxi.api.v1_api import V1Api
-from pyhpeuxi.api.v1alpha1_api import V1alpha1Api
-from pyhpeuxi.api.wired_networks_api import WiredNetworksApi
-from pyhpeuxi.api.wireless_networks_api import WirelessNetworksApi
-
-# import ApiClient
-from pyhpeuxi.api_response import ApiResponse
-from pyhpeuxi.api_client import ApiClient
-from pyhpeuxi.configuration import Configuration
-from pyhpeuxi.exceptions import OpenApiException
-from pyhpeuxi.exceptions import ApiTypeError
-from pyhpeuxi.exceptions import ApiValueError
-from pyhpeuxi.exceptions import ApiKeyError
-from pyhpeuxi.exceptions import ApiAttributeError
-from pyhpeuxi.exceptions import ApiException
-
-# import models into sdk package
+# import models into model package
 from pyhpeuxi.models.agent_group_assignment_post_agent import AgentGroupAssignmentPostAgent
 from pyhpeuxi.models.agent_group_assignment_post_group import AgentGroupAssignmentPostGroup
 from pyhpeuxi.models.agent_group_assignment_post_request import AgentGroupAssignmentPostRequest
