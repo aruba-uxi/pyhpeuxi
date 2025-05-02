@@ -1,33 +1,36 @@
-import pyhpeuxi
-from pyhpeuxi.rest import ApiException
-from pprint import pprint
 import os
+import time
+from pprint import pprint
+
+import pyhpeuxi
+from pyhpeuxi.common import TokenGenerator
+from pyhpeuxi.rest import ApiException
+
+token_generator = TokenGenerator(
+    client_id=os.environ["HPEUXI_CLIENT_ID"],
+    client_secret=os.environ["HPEUXI_CLIENT_SECRET"],
+    verify_ssl=False)
 
 # Defining the host is optional and defaults to https://api.capenetworks.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pyhpeuxi.Configuration(
-    host = "https://api.capenetworks.com"
+    host = "https://api.capenetworks.com",
+    access_token=token_generator.token(),
 )
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: HTTPBearer
-configuration = pyhpeuxi.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
 
 if __name__ == "__main__":
     # Enter a context with an instance of the API client
     with pyhpeuxi.ApiClient(configuration) as api_client:
         # Create an instance of the API class
         api_instance = pyhpeuxi.V1alpha1Api(api_client)
-
-        try:
-            groups = api_instance.groups_get()
-            pprint(groups)
-        except ApiException as e:
-            print("Exception when calling groups_get: %s\n" % e)
+        while(True):
+            try:
+                groups = api_instance.groups_get()
+                pprint(groups)
+                wireless_networks = api_instance.wireless_networks_get()
+                pprint(wireless_networks)
+                print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+                print("sleeping for 5 minutes")
+                time.sleep(300)
+            except ApiException as e:
+                print("Exception when calling groups_get: %s\n" % e)

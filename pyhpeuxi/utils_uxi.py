@@ -1,9 +1,10 @@
 # (C) Copyright 2019-2025 Hewlett Packard Enterprise Development LP.
 # Apache License 2.0
 
-import json
 import csv
+import json
 import os
+
 
 class UtilsUXI():
     def get_token_from_file(fileName):
