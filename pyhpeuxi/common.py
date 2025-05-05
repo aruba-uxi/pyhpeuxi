@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 
 import urllib3
 
+from pyhpeuxi.configuration import BearerAuthSetting
 from pyhpeuxi.exceptions import ApiException
 
 urllib3.disable_warnings()
@@ -88,12 +89,24 @@ class TokenGenerator:
                     reason="Access token not found in response",
                 )
 
-    def token(self) -> str:
-        if self.access_token is None or self.exires_at < datetime.now() + timedelta(seconds=60):
+    def auth(self)-> BearerAuthSetting:
+        """Gets Auth Settings dict for api client.
+
+        :return: The Auth Settings information dict.
+        """
+        if self.access_token is None or self.exires_at < (datetime.now() + timedelta(seconds=1)):
             self._new_api_token()
         if self.access_token is None:
             raise ApiException(
                 status=401,
                 reason="Access token is not available",
             )
-        return self.access_token
+        auth: BearerAuthSetting = {}
+        if self.access_token is not None:
+            auth = {
+                'type': 'bearer',
+                'in': 'header',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
+            }
+        return auth
